@@ -3,6 +3,16 @@
 - 源文件: ./src/sendether/sendether.c，可执行文件: ./bin/senderther，将无法找到可执行文件
 2. 如果文件夹中出现空格，编译器中将无法识别到文件夹
 3. 在c_for_tcp中，采用src下子文件夹的结构，子文件夹中包含针对该子文件夹的头文件和源文件 -> 因为各个子文件夹的功能0互不联通，所以采用这种结构
+4. 如果是在GNU/Linux中编译，使用gcc开发，如果需要指定C语言标准，那么应该使用gnu相关的标准，如gnu99
+- gcc -std=gnu99
+- 在c_cpp_properties.json中，加入以下，以使显示代码提示功能显示正确
+```json
+"defines": [
+    "__linux__",
+    "__x86_64__",
+    "_GNU_SOURCE"
+],
+```
 
 
 ## c开发中的注意事项
