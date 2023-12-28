@@ -93,3 +93,22 @@ printf("(int *)(p+7): %p\n", (int *)(p+7));
 - .LC2是一个标签，通常用于标识数据或代码的位置。
 - .LC2(%rip)表示的是从当前指令的下一条指令开始，到标签.LC2的相对偏移。这种寻址方式常用于Position Independent Code（位置无关代码），例如动态链接库或者PIE（Position Independent Executable，位置无关可执行文件）。
 - 简单来说，.LC2(%rip)就是用来获取标签.LC2的位置的一种方式。
+
+
+## 一个比较完整的编译过程
+<!-- src: main.c sum.c，main.c中使用了sum.c中的函数定义  -->
+1. 生成预编译文件，将宏定义等信息进行展开（使用预编译器cpp）
+``` bash
+cpp main.c main.i
+cpp sum.c sum.i
+```
+2. 将预编译文件转换为汇编文件（使用编译器cc）
+``` bash
+# cc main.i -o main.s  # 如果main中没有include "sum.c"，这么转换会报错
+cc main.i sum.i -o main.s
+# cc sum.i -o sum.s  # undefined reference to `main'
+```
+3. 将汇编文件翻译成一个可重定位目标文件（使用汇编器as）
+``` bash
+# as main.s -o main.o  # 失败
+```
