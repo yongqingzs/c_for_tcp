@@ -2,6 +2,8 @@
 /bin/*
 /test/temp
 **.o
-prog
 **.so
 **.a
+
+prog
+prog*
