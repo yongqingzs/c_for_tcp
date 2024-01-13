@@ -1,3 +1,7 @@
 /.vscode
 /bin/*
 /test/temp
+**.o
+prog
+**.so
+**.a
