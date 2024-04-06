@@ -1,0 +1,7 @@
+foo.txt
+foobar.txt
+prog
+read_fb.c
+read_fb_1.c
+readdir.c
+statcheck.c
